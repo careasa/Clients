@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Create Account Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+    </head>
+<body>
+<body>
+    <div class="w-[1440px] h-[1024px] relative bg-white  overflow-hidden">
+    <div class="w-[216px] h-[1024px] left-0 top-0 absolute bg-white rounded-tr-lg rounded-br-lg border border-[#026633]"></div>
+    <div class="w-[214px] h-[102.40px] left-0 top-[310px] absolute">
+        <div class="w-[214px] h-[102.40px] left-0 top-0 absolute bg-white/0"></div>
+        <div class="left-[55px] top-[51px] absolute text-black text-2xl font-medium font-['Inter']">
+            <a href="/calender">Calender</a>
+        </div>
+    </div>
+    <div class="w-[214px] h-[102.40px] left-[1px] top-[410px] absolute">
+        <div class="w-[214px] h-[102.40px] left-0 top-0 absolute bg-white/0"></div>
+        <div class="left-[38px] top-[51px] absolute text-black text-2xl font-medium font-['Inter']">
+            <a href="/liveactivity">Live Activity</a>
+        </div>
+    </div>
+    <div class="w-[214px] h-[102.40px] left-[1px] top-[512px] absolute">
+        <div class="w-[214px] h-[102.40px] left-0 top-0 absolute bg-white/0"></div>
+        <div class="left-[46px] top-[51px] absolute text-black text-2xl font-medium font-['Inter']">
+            <a href="/resources">Resources</a>
+        </div>
+    </div>
+    <div class="w-[214px] h-[102.40px] left-[1px] top-[718px] absolute">
+        <div class="w-[214px] h-[102.40px] left-0 top-0 absolute bg-white/0"></div>
+        <div class="left-[41px] top-[51px] absolute text-black text-2xl font-medium font-['Inter']">
+            <a href="/community">Community</a>
+        </div>
+    </div>
+    <div class="w-[214px] h-[102.40px] left-0 top-[615px] absolute">
+        <div class="w-[214px] h-[102.40px] left-0 top-0 absolute bg-white/0"></div>
+        <div class="left-[79px] top-[51px] absolute text-black text-2xl font-medium font-['Inter']">
+            <a href="/chat">Chat</a>
+        </div>
+    </div>
+    <div class="w-[214px] h-[102.40px] left-[2px] top-[820px] absolute">
+        <div class="w-[214px] h-[102.40px] left-0 top-0 absolute bg-white/0"></div>
+        <div class="left-[70px] top-[51px] absolute text-black text-2xl font-medium font-['Inter']">
+            <a href="/profile">Profile</a>
+        </div>
+    </div>
+    <div class="left-[41px] top-[63px] absolute text-[#026633] text-[40px] font-normal font-['Inter']">Careso</div>
+    <div class="left-[55px] top-[111px] absolute text-[#026633] text-base font-normal font-['Inter']">Healing Minds</div>
+    <div class="w-[864px] h-[76px] left-[391px] top-[132px] absolute bg-[#f7f7f7] rounded-[32px] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.10)] border border-[#999999]"></div>
+    <div class="w-[864px] h-[76px] left-[391px] top-[132px] absolute bg-[#f7f7f7] rounded-[32px] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.10)] border border-[#999999]"></div>
+<div>
+    <input class="bg-green-500 w-[101px] h-[37px] left-[391px] top-[132px]" type="submit" value="+ New">
+</div>
+<!-- New Button Section -->
+ <div class="w-[864px] h-[76px] left-[391px] top-[220px] absolute flex justify-center items-center">
+    <button class="bg-[#026633] text-white text-lg font-medium px-6 py-3 rounded-[16px] shadow hover:bg-green-700" onclick="enter()">Add New Entry</button>
+</div>
+
+<!-- Container to display client entries -->
+<div id="clientEntries" class="flex justify-center items-center flex-col mt-6">
+    <!-- New client entries will be appended here -->
+</div>
+
+<script>
+    function enter() {
+        // Capture the client name through a prompt
+        const clientName = prompt('Enter client name:');
+        if (clientName) {
+            // Generate a unique ID
+            const uniqueID = `J${Math.random().toString(36).substr(2, 9).toUpperCase()}SD${Math.random().toString(10).substr(2, 6)}`;
+
+            // Create a new client entry div
+            const clientEntry = document.createElement('div');
+            clientEntry.className = "w-[864px] h-20 bg-[#f0f0f0]/0 rounded-lg top-[230px] left-[50px] border-2 border-black overflow-hidden flex items-center justify-center relative mt-4"; // Centering content
+
+            // Add the generated ID inside the div
+            clientEntry.innerHTML = `
+            <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+                <div class="text-black text-2xl top-[26px] left-[50px] font-normal font-['Inter']">${uniqueID}</div>
+            `;
+
+            // Append the new client entry to the client entries section
+            const clientEntries = document.getElementById('clientEntries');
+            clientEntries.appendChild(clientEntry);
+        } else {
+            alert('Client name cannot be empty.');
+        }
+    }
+</script>
+
+<!-- <div class="w-[864px] h-[76px] left-[391px] top-[220px] absolute flex justify-center items-center">
+    <button onclick="enter()">Add New Entry</button>
+</div>
+
+<script>
+    function enter() {
+        // Capture the client name through a prompt
+        const clientName = prompt('Enter client name:');
+        if (clientName) {
+            // Generate a unique ID
+            const uniqueID = `J${Math.random().toString(36).substr(2, 9).toUpperCase()}SD${Math.random().toString(10).substr(2, 6)}`;
+
+            // Create a new client entry div
+            const clientEntry = document.createElement('div');
+            clientEntry.className = "w-[864px] top-120px h-20 bg-[#f0f0f0]/0 rounded-lg border-2 border-black overflow-hidden flex items-center relative";
+            clientEntry.innerHTML = `
+                <div class="absolute left-[65px] top-[26px] text-black text-2xl font-normal font-['Inter']">${uniqueID}</div>
+                <div class="absolute left-[27px] top-[26px] text-black text-2xl font-medium font-['Inter']">#</div>
+            `;
+
+            // Append the new client entry to the client entries section
+            const clientEntries = document.getElementById('clientEntries');
+            clientEntries.appendChild(clientEntry);
+        } else {
+            alert('Client name cannot be empty.');
+        }
+    }
+</script> -->
+
+<div id="clientEntries"></div>
+
+
+
+            <!-- <button onclick="enter()" class="bg-[#026633] text-white text-lg font-medium px-6 py-3 rounded-[16px] shadow hover:bg-green-700">
+                Add New Entry
+            </button> -->
+        </div>
+
+    <div class="w-[23.67px] h-[29px] left-[419px] top-[156px] absolute">
+        <div class="w-[19.64px] h-[19.64px] left-0 top-0 absolute bg-[#d9d9d9]/0 rounded-full border-2 border-black"></div>
+        <div class="w-[15.11px] h-[0px] left-[14.01px] top-[17.38px] absolute origin-top-left rotate-[50.29deg] border-2 border-black"></div>
+    </div>
+    <div class="w-[214px] h-[102.40px] left-[2px] top-[208px] absolute rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] border-[#026633]">
+        <div class="w-[214px] h-[102.40px] left-0 top-0 absolute bg-white rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] border-r-2 border-t-2 border-b-2 border-[#026633]"></div>
+        <div class="left-[67px] top-[66px] absolute text-black text-2xl font-medium font-['Inter']">
+            <a href="/clients">Clients</a>
+        </div>
+    </div>
+    <!-- <div class="w-[864px] h-20 left-[391px] top-[271px] absolute bg-[#f0f0f0]/0 rounded-lg border-2 border-black  overflow-hidden">
+        <div class="left-[65px] top-[26px] absolute text-black text-2xl font-normal font-['Inter']">J103678512SD666660</div>
+        <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+        <img class="w-[22.22px] h-[28.57px] left-[807px] top-[26px] absolute" src="https://via.placeholder.com/22x29" />
+    </div>
+    <div class="w-[864px] h-20 left-[391px] top-[376px] absolute bg-[#f0f0f0]/0 rounded-lg border-2 border-black  overflow-hidden">
+        <div class="left-[65px] top-[26px] absolute text-black text-2xl font-normal font-['Inter']">J103678512SD666660</div>
+        <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+        <img class="w-[22.22px] h-[28.57px] left-[807px] top-[26px] absolute" src="https://via.placeholder.com/22x29" />
+    </div>
+    <div class="w-[864px] h-20 left-[391px] top-[481px] absolute bg-[#f0f0f0]/0 rounded-lg border-2 border-black  overflow-hidden">
+        <div class="left-[65px] top-[26px] absolute text-black text-2xl font-normal font-['Inter']">J103678512SD666660</div>
+        <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+        <img class="w-[22.22px] h-[28.57px] left-[807px] top-[26px] absolute" src="https://via.placeholder.com/22x29" />
+    </div>
+    <div class="w-[864px] h-20 left-[391px] top-[586px] absolute bg-[#f0f0f0]/0 rounded-lg border-2 border-black  overflow-hidden">
+        <div class="left-[65px] top-[26px] absolute text-black text-2xl font-normal font-['Inter']">J103678512SD666660</div>
+        <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+        <img class="w-[22.22px] h-[28.57px] left-[807px] top-[26px] absolute" src="https://via.placeholder.com/22x29" />
+    </div>
+    <div class="w-[864px] h-20 left-[391px] top-[691px] absolute bg-[#f0f0f0]/0 rounded-lg border-2 border-black  overflow-hidden">
+        <div class="left-[65px] top-[26px] absolute text-black text-2xl font-normal font-['Inter']">J103678512SD666660</div>
+        <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+        <img class="w-[22.22px] h-[28.57px] left-[807px] top-[26px] absolute" src="https://via.placeholder.com/22x29" />
+    </div>
+    <div class="w-[864px] h-20 left-[391px] top-[796px] absolute bg-[#f0f0f0]/0 rounded-lg border-2 border-black  overflow-hidden">
+        <div class="left-[65px] top-[26px] absolute text-black text-2xl font-normal font-['Inter']">J103678512SD666660</div>
+        <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+        <img class="w-[22.22px] h-[28.57px] left-[807px] top-[26px] absolute" src="https://via.placeholder.com/22x29" />
+    </div>
+    <div class="w-[864px] h-20 left-[391px] top-[901px] absolute bg-[#f0f0f0]/0 rounded-lg border-2 border-black  overflow-hidden">
+        <div class="left-[65px] top-[26px] absolute text-black text-2xl font-normal font-['Inter']">J103678512SD666660</div>
+        <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
+        <img class="w-[22.22px] h-[28.57px] left-[807px] top-[26px] absolute" src="https://via.placeholder.com/22x29" />
+    </div> -->
+</div>
+ <script src="/demo.js"></script>
+</body>
+</html>
