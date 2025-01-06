@@ -51,45 +51,43 @@
     <div class="left-[55px] top-[111px] absolute text-[#026633] text-base font-normal font-['Inter']">Healing Minds</div>
     <div class="w-[864px] h-[76px] left-[391px] top-[132px] absolute bg-[#f7f7f7] rounded-[32px] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.10)] border border-[#999999]"></div>
     <div class="w-[864px] h-[76px] left-[391px] top-[132px] absolute bg-[#f7f7f7] rounded-[32px] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.10)] border border-[#999999]"></div>
-<div>
-    <input class="bg-green-500 w-[101px] h-[37px] left-[391px] top-[132px]" type="submit" value="+ New">
+
+<!-- New Button -->
+ <form action="/clients" method="POST" class="mt-6 flex flex-col items-center gap-4" style="margin-top: 200px;">
+            <input 
+                type="text" 
+                name="name" 
+                placeholder="Client Name" 
+                class="top-[300px] px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" 
+                required
+            />
+        
+            <button 
+                type="submit" 
+                class="px-6 py-2 bg-[#026633] text-white font-medium rounded-lg hover:bg-green-700 top-[350px]">Add Client
+            </button>
+        </form>
+
+        <!-- Client List -->
+        <div class="mt-[10vh] w-[50%] mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Client List:</h2>
+    <div class="grid grid-cols-1 gap-4">
+    <% clients.forEach(client => { %>
+        <div class="p-4 border border-gray-300 rounded-lg shadow">
+            <a href="/client/<%= client._id %>/notes" class="text-black-600 font-bold text-xl"><%= client.name %></a>
+            <!-- Form to delete the client -->
+            <form action="/deleteuser/<%= client._id %>" method="post">
+                <button type="submit" class="text-red-600">Delete</button>
+            </form>
+            <div class="client-item">
+            
+        </div>
+        </div>
+    <% }) %>
 </div>
-<!-- New Button Section -->
- <div class="w-[864px] h-[76px] left-[391px] top-[220px] absolute flex justify-center items-center">
-    <button class="bg-[#026633] text-white text-lg font-medium px-6 py-3 rounded-[16px] shadow hover:bg-green-700" onclick="enter()">Add New Entry</button>
+
 </div>
 
-<!-- Container to display client entries -->
-<div id="clientEntries" class="flex justify-center items-center flex-col mt-6">
-    <!-- New client entries will be appended here -->
-</div>
-
-<script>
-    function enter() {
-        // Capture the client name through a prompt
-        const clientName = prompt('Enter client name:');
-        if (clientName) {
-            // Generate a unique ID
-            const uniqueID = `J${Math.random().toString(36).substr(2, 9).toUpperCase()}SD${Math.random().toString(10).substr(2, 6)}`;
-
-            // Create a new client entry div
-            const clientEntry = document.createElement('div');
-            clientEntry.className = "w-[864px] h-20 bg-[#f0f0f0]/0 rounded-lg top-[230px] left-[50px] border-2 border-black overflow-hidden flex items-center justify-center relative mt-4"; // Centering content
-
-            // Add the generated ID inside the div
-            clientEntry.innerHTML = `
-            <div class="left-[27px] top-[26px] absolute text-black text-2xl font-medium font-['Inter']">#</div>
-                <div class="text-black text-2xl top-[26px] left-[50px] font-normal font-['Inter']">${uniqueID}</div>
-            `;
-
-            // Append the new client entry to the client entries section
-            const clientEntries = document.getElementById('clientEntries');
-            clientEntries.appendChild(clientEntry);
-        } else {
-            alert('Client name cannot be empty.');
-        }
-    }
-</script>
 
 <!-- <div class="w-[864px] h-[76px] left-[391px] top-[220px] absolute flex justify-center items-center">
     <button onclick="enter()">Add New Entry</button>

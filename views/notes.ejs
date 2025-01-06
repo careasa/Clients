@@ -39,22 +39,59 @@
     <div class="w-[943px] h-[33px] left-[269px] top-[252px] absolute bg-[#d9d9d9]/25 rounded shadow-[0px_2.6580469608306885px_2.6580469608306885px_0px_rgba(0,0,0,0.25)]"></div>
     <div class="w-[81.18px] h-[25.37px] left-[275.34px] top-[256.58px] absolute bg-[#026633] rounded-sm border-r border-[#828282]"></div>
     <div class="w-[81.31px] h-[22.87px] left-[356.41px] top-[258.45px] absolute bg-[#d9d9d9]/0 rounded-sm border-r border-[#828282]"></div>
+    <form action="/notes" method="post">
     <div class="left-[281px] top-[261px] absolute text-[#f7f7f7] text-xs font-normal font-['Inter']">
-        <form action="/create" method="post">
             <input class="bg-transparent w-20px" placeholder="date" name="date">
     </div>
     <div class="right-[281px] top-[300px] absolute text-[#f7f7f7] text-xs font-normal font-['Inter']">
-        <button class="bg-[#026633] w-20px rounded-md p-1 text-xl">Add Note</button>
+    <button class="bg-[#026633] w-20px rounded-md p-1 text-xl" onclick="addNote()">Add Note</button>
+</div>
+<div class="left-[364px] top-[261px] absolute text-black text-xs font-normal font-['Inter']">Date</div>
+<div class="w-full h-[564px] left-[264px] top-[350px] absolute">
+    <textarea id="clientNotes" class="w-[864px] h-[150px] p-4 border rounded-lg text-black bg-[#f9f9f9] shadow-md" placeholder="Enter notes here..."></textarea>
+</div>
+
+<div id="notesContainer" class="absolute left-[264px] top-[520px] w-[864px]">
+    <h3 class="text-lg font-bold mb-2">Created Notes:</h3>
+    <div id="notesList" class="space-y-4">
     </div>
-    <div class="left-[364px] top-[261px] absolute text-black text-xs font-normal font-['Inter']">date</div>
-    <div class="w-[2.54px] h-[14.74px] left-[271.03px] top-[262.01px] absolute bg-[#026633] rounded-[5.08px]"></div>
-    <div class="w-[10.15px] h-[10.15px] left-[444.04px] top-[265.46px] absolute bg-[#c6c6c6] rounded-sm"></div>
-    <div class="left-[444.68px] top-[262.29px] absolute text-[#026633] text-xs font-bold font-['Inter']">+</div>
-    <div class="w-full h-[564px] left-[264px] top-[350px] absolute">
-        <textarea id="clientNotes" class="w-[864px] h-[150px] p-4 border rounded-lg text-black bg-[#f9f9f9] shadow-md" placeholder="Enter notes here..."></textarea>
-    </div>
-        </form>
-        
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+        savedNotes.forEach((note) => displayNote(note));
+    });
+
+    function addNote(){
+        const clientNotes = document.getElementById("clientNotes").value;
+
+        if (clientNotes.trim()) {
+            const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+            savedNotes.push(clientNotes);
+            localStorage.setItem("notes", JSON.stringify(savedNotes));
+
+            displayNote(clientNotes);
+
+            document.getElementById("clientNotes").value = "";
+        } else {
+            alert("Please enter a note before adding!");
+        }
+    };
+
+    function displayNote(noteText) {
+        const notesList = document.getElementById("notesList");
+
+        const noteDiv = document.createElement("div");
+        noteDiv.className = "p-4 bg-[#f1f1f1] border border-gray-300 rounded-lg shadow text-black";
+
+        noteDiv.textContent = noteText;
+
+        notesList.appendChild(noteDiv);
+    };
+
+</script>
+
     <div class="w-[216px] h-[1024px] left-0 top-0 absolute bg-white rounded-tr-lg rounded-br-lg border border-[#026633]"></div>
     <div class="left-[39px] top-[44px] absolute text-[#026633] text-[40px] font-normal font-['Inter']">Careso</div>
     <div class="left-[53px] top-[111px] absolute text-[#026633] text-base font-normal font-['Inter']">Healing Minds</div>
