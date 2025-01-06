@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const User = require('./models/user');
-const Note = require('./models/notes'); // Assuming you have a Note model
+const Note = require('./models/notes'); 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
@@ -54,12 +54,12 @@ app.post('/notes', (req, res) => {
 
 app.get('/note/:id', async (req, res) => {
     const note = await Note.findById(req.params.id);
-    res.render("show", { note }); // Assuming you have a `show.ejs` file
+    res.render("show", { note }); 
 });
 
 app.get('/edit/:id', async (req, res) => {
     const note = await Note.findById(req.params.id);
-    res.render("edit", { note }); // Assuming you have an `edit.ejs` file
+    res.render("edit", { note }); 
 });
 
 app.post('/edit', async (req, res) => {
@@ -83,8 +83,8 @@ app.post('/deletenote/:id', async (req, res) => {
 app.post('/deleteuser/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        await User.findByIdAndDelete(id);  // Use the correct model to delete
-        res.redirect('/clients');  // Redirect to clients list after deletion
+        await User.findByIdAndDelete(id);  
+        res.redirect('/clients');  
     } catch (error) {
         console.error(error);
         res.status(500).send("Error deleting user.");
